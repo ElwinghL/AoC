@@ -18,6 +18,25 @@ void splitLine(string line, string *s1, string *s2)
     }
 }
 
+void splitLine(string line, vector<string> *vec)
+{
+    istringstream sline(line);
+    string data = "";
+    while (getline(sline, data, ' '))
+    {
+        vec->push_back(data);
+    }
+}
+void splitLine(string line, vector<int long> *vec)
+{
+    istringstream sline(line);
+    string data = "";
+    while (getline(sline, data, ' '))
+    {
+        vec->push_back(stol(data.c_str()));
+    }
+}
+
 void getInts(string line, long int *d1, long int *d2)
 {
     string s1 = "", s2 = "";
@@ -35,4 +54,5 @@ void fillTabs(string line, vector<long int> *tab1, vector<long int> *tab2)
     tab2->push_back(d2);
 }
 
-bool lSort(long int a, long int b) { return a < b; }
+bool lSortAsc(long int a, long int b) { return a < b; }
+bool lSortDesc(long int a, long int b) { return a > b; }
