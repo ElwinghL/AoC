@@ -43,7 +43,7 @@ int main()
     string line;
     file.open("./res/1.res");
 
-    long int result = 0;
+    long int distance = 0, similirity = 0;
     vector<long int> tab1, tab2;
 
     if (file.is_open())
@@ -61,10 +61,19 @@ int main()
 
     for (size_t i = 0; i < tab1.size(); ++i)
     {
-        result += abs(tab1[i] - tab2[i]);
+        distance += abs(tab1[i] - tab2[i]);
     }
 
     // On print le résultat
-    cout << result << endl;
-    return result;
+    cout << "Totale de la distance : " << distance << endl;
+
+    //On retire les doublons de tab1 :
+    tab1.erase( unique( tab1.begin(), tab1.end() ), tab1.end() );
+
+    for (size_t i = 0; i < tab1.size(); ++i)
+    {
+        similirity += tab1[i] * count(tab2.begin(), tab2.end(), tab1[i]);
+    }
+    cout << "Totale de similitude  : " << similirity << endl;
+    return 0;
 }
