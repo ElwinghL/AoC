@@ -112,8 +112,30 @@ int main()
             }
         }
     }
+    // Maudite consigne de la partie 2, si j'avais su je me serai centré sur le A dès le départ.
+    int resultV2 = 0;
+    for (size_t counter = 1; counter < allLines.size(); ++counter)
+    {
+        lineXMAS line = allLines[counter];
+        // On se focalise sur les X
+        for (int a : line.a)
+        {
+            // On regarde dans les 3 lignes suivantes si les placements existent
+            if (counter <= allLines.size() - 1 && counter >= 1)
+            {
+                lineXMAS nextOne = allLines[counter + 1];
+                lineXMAS previousOne = allLines[counter - 1];
 
-    cout << "Le nombre de XMAS dans le fichier : " << result << endl;
+                if ((find(previousOne.m.begin(), previousOne.m.end(), a - 1) != previousOne.m.end() && find(nextOne.s.begin(), nextOne.s.end(), a + 1) != nextOne.s.end()) ||
+                    (find(previousOne.s.begin(), previousOne.s.end(), a - 1) != previousOne.s.end() && find(nextOne.m.begin(), nextOne.m.end(), a + 1) != nextOne.m.end()))
+                    if ((find(previousOne.m.begin(), previousOne.m.end(), a + 1) != previousOne.m.end() && find(nextOne.s.begin(), nextOne.s.end(), a - 1) != nextOne.s.end()) ||
+                        (find(previousOne.s.begin(), previousOne.s.end(), a + 1) != previousOne.s.end() && find(nextOne.m.begin(), nextOne.m.end(), a - 1) != nextOne.m.end()))
+                        ++resultV2;
+            }
+        }
+    }
+    cout << "Le nombre de XMAS dans le fichier  : " << result << endl;
+    cout << "Le nombre de X-MAS dans le fichier : " << resultV2 << endl;
 
     return 0;
 }
