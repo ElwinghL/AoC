@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm> // std::sort
 #include <vector>
+#include <regex>
 
 using namespace std;
 
